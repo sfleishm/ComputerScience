@@ -1,0 +1,10 @@
+table{
+    border-style:solid;
+}
+.Band{
+    font-weight: normal;
+}
+th, tr{
+    border-style:solid;
+}
+
