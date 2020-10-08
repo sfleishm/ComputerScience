@@ -1,3 +1,5 @@
+/* Class -> . Id -> # */
+
 table{
     border-style:solid;
 }
@@ -6,5 +8,21 @@ table{
 }
 th, tr{
     border-style:solid;
+}
+
+.outer-content{
+    padding: 20px;
+    border-top: 20px;
+    background-color: pink;
+    text-align: left;
+    width: 75%;
+}
+
+.inner-content{
+    /* margin allows it to center properly */
+    margin: auto;
+    background-color: aquamarine;
+    text-align: center;
+    width: 75%;
 }
 
