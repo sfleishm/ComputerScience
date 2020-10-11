@@ -7,7 +7,7 @@ table{
     font-weight: normal;
 }
 th, tr{
-    border-style:solid;
+    border: 1px solid black;
 }
 
 .outer-content{
@@ -21,8 +21,20 @@ th, tr{
 .inner-content{
     /* margin allows it to center properly */
     margin: auto;
-    background-color: aquamarine;
+    background-color: blue;
     text-align: center;
     width: 75%;
 }
 
+tbody tr:nth-of-type(2n) {
+    background: aquamarine;
+}
+
+tbody tr:nth-of-type(2n+1) {
+    background: greenyellow;
+}
+
+tbody th, td {
+    border: 1px solid black;
+    font-weight: normal;
+  }
