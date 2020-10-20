@@ -2,7 +2,7 @@
 // Can hoist a function when function isn't tied to a variable
 
 // Step 1 show how hoisting works 
-console.log(f_name('Scott'));
+console.log(f_name('Scott')); //This will work
 
 function f_name(name) {
     return name;

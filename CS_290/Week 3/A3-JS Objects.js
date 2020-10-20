@@ -1,50 +1,58 @@
-// Step 1, Implement an If . Else to test if two parameters are the same value and type - DONE
-// Step 2, 
-
-let obj1 =      {   here: {is: "an"},
+let obj =      {   here: {is: "an"},
                     object: 2};
 
-let objTest =   {   here: {is: "an"},
-                    object: 3};
+let obj2 =      {   here: {is: "an"},
+                    object: 3
+                    };
 
-// function deepEqual(first_pass, second_pass, i = 0) {
-//     // Most Simplistic If Then 
-//     // console.log(first_pass, second_pass)
-//     // Check if they are both values 
-//     if (typeof(first_pass) == 'object' & second_pass != null) {
-//         if ((Object.keys(first_pass).length) != (Object.keys(second_pass).length)) {
-//             console.log('Objects but not same length')
-//             return false;
-//         }
-
-//         else {
-//             deepEqual(first_pass[Object.keys(first_pass)[i]], second_pass[Object.keys(second_pass)[i]], i += 1);
-//         };
-        
-//     };
-
-//     if (first_pass === second_pass) {
-//         // console.log('Same')
-//         return true;
-//     };
-
-// };
-
-function deepEqual(first_pass, second_pass) {
+function deepEqual(first_pass, second_pass) 
+{
+    // Simplest check. 
     if (first_pass === second_pass) {
         return true;
-    }
+    };
 
-    else if (typeof(first_pass) == 'object' & second_pass != null) {
-        if ((Object.keys(first_pass).length) != (Object.keys(second_pass).length)) {
-            console.log('Objects but not same length')
+    // Need to check if one is an object and the other IS NOT null and vice versa because of the bug where the first one could actually be null too
+    if (((typeof(first_pass) == 'object' && second_pass != null)) && ((first_pass != null &&  typeof(second_pass) == 'object'))) 
+    {
+        if ((Object.keys(first_pass).length) != (Object.keys(second_pass).length)) 
+        {
+            // console.log('Objects but not same length')
             return false;
+        }
+
+        // Loop through the keys of the first_pass to see if keys match, if they dont return false 
+        for (let key_var in first_pass) 
+        {
+            // Check to see if the second pass has a similar property name to first_pass, trying this from Mozilla's for in, not working properly   
+            // If we do, recurse in to hopefully check and see if the insides are the same
+            if (second_pass.hasOwnProperty(key_var)) 
+            {
+                return deepEqual(first_pass[key_var], second_pass[key_var]);                
+            }
+            else {
+                return false;
+            };
+        
         };
     }
 
-    else {
+    else 
+    {
         return false;
     };
-};
 
-console.log(deepEqual(4, '4'));
+    
+};
+// console.log(deepEqual(obj, {here: {is: "an"}, object: 2}));
+// console.log(deepEqual(obj, {here: 1, object: 2}));
+console.log(deepEqual(obj, obj2))
+// console.log(deepEqual(obj, {here: 1, object: 2}))
+// console.log(deepEqual(obj, {here: {is: "an" }, object:2 }))
+// console.log(deepEqual(obj, {here: {is: "and" }, object:2 }))
+// console.log(deepEqual(null, {here: {is: "an" }, object:2 }))
+// console.log(deepEqual({here: {is: "an" }, object:2 }, null))
+console.log(deepEqual(null, null))
+console.log(deepEqual(1,2))
+console.log(deepEqual(1, '1'))
+console.log(deepEqual([3,5,5], [3,4,5]))
