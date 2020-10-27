@@ -38,7 +38,7 @@ function sortArr(comparator, array) {
     arrayLength = students.length;
 
     // Using an insert sort method. For the i's keep incrementing through the array
-    // The j's will start by checking index 0 + 1 to index, and then decrementing to see if it needs to swap positions again, will break when it doesn't need to swap.
+    // The j's will start by checking index i which starts at 0 + 1, to index, and then decrementing to see if it needs to swap positions again, will break when it doesn't need to swap.
     for (let i = 1; i < arrayLength; i++) 
     {
         // Once it hits 0 we'll know to stop since thats the first index spot
