@@ -1,6 +1,9 @@
 // JS For Week 5's stuff
-
+// At first I thought that I had to start out at the top left corner where the header is, some old code that is there that was checking for those conditions. 
+// had to change at the last minute to fix and left it in. 
 // https://www.w3schools.com/jsref/met_table_createthead.asp
+
+// Create
 
 var createTable = document.createElement("table");
 
@@ -8,15 +11,16 @@ var headerRow = createTable.createTHead("th")
 
 var row = headerRow.insertRow(0);
 
+// Create 4 Header Items 
 for (var i = 1; i < 5; i ++) {
     var cell = row.insertCell(i-1)
-    // cell.innerHTML = 'Header ' + i
     cell.appendChild(create_text_node('Header ' + i));
     cell.style.border = '1px solid black';
 }
 
 createTable.appendChild(headerRow)
 
+// Create our non header col / rows 
 for (var i = 1; i < 4; i++){
     var newItem = document.createElement("tr");
     
@@ -31,14 +35,14 @@ for (var i = 1; i < 4; i++){
 
 
 /*
-Create our positional buttons
+Create a function to help with adding text 
 */
 
 function create_text_node(text) {
     return document.createTextNode(text);
 };
 
-// var create_text_node = document.createTextNode('Go Up')
+// Create our directional buttons and mark up button 
 
 var button_up = document.createElement("button");
 button_up.appendChild(create_text_node('Go Up'));
@@ -60,10 +64,7 @@ var mark_cell = document.createElement("button");
 mark_cell.appendChild(create_text_node('Mark Cell'));
 mark_cell.addEventListener("click", mark_yellow);
 
-
-// createTable.appendChild(newItem);
 createTable.style.border = '1px solid black';
-
 
 document.body.appendChild(createTable);
 document.body.appendChild(button_up);
@@ -77,18 +78,20 @@ document.body.appendChild(mark_cell);
 // Was having a problem finding the table, adding [0] allowed the table to be found
 var current_cell = document.getElementsByTagName("table")[0];
 var current_column = 1
-var row = 0
+var row = 1
 
 current_cell = current_cell.firstElementChild;
+current_cell = current_cell.nextElementSibling;
 current_cell = current_cell.firstElementChild;
-current_cell = current_cell.firstElementChild;
+
+// Make the current cell different so you can distinguish 
 current_cell.style.border = '3px solid black';
 
 
 function move_right() {
-    var content = current_cell.textContent;
+    // var content = current_cell.textContent;
 
-    if (content.includes('4')) {
+    if (current_column == 4) {
         return current_cell;
     }
     else {
@@ -107,9 +110,9 @@ function move_right() {
 };
 
 function move_left() {
-    var content = current_cell.textContent;
+    // var content = current_cell.textContent;
 
-    if (content.includes('Header 1') || content.includes('1, 1') || content.includes('2, 1') || content.includes('3, 1')) {
+    if (current_column == 1) {
         return current_cell;
     }
     else {
@@ -125,9 +128,9 @@ function move_left() {
 }
 
 function move_down() {
-    var content = current_cell.textContent;
+    // var content = current_cell.textContent;
     
-    if (content.includes('3, 1') || content.includes('3, 2') || content.includes('3, 3') || content.includes('3, 4')) {
+    if (row == 3) {
         return current_cell;
     }
 
@@ -197,8 +200,8 @@ function mark_yellow() {
     current_cell.style.backgroundColor = 'yellow'
 }
 
-// current_cell.style.backgroundColor = 'yellow'
+
 
 console.log(current_cell);
-// current_cell.getAttribute("td")[0].style.borderColor = "red"
+
 
